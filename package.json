@@ -2,7 +2,7 @@
   "name": "chessai",
   "version": "1.0.0",
   "description": "a chess interface to play against a chess engine made with machine learning",
-  "main": "server.js",
+  "main": "webserver/server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "cross-env NODE_ENV=development nodemon server.js"
