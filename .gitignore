@@ -1,2 +1,7 @@
 node_modules/
 venv
+/.idea/.gitignore
+/.idea/chessai.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
