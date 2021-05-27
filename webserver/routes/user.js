@@ -1,18 +1,22 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const uuid = require('uuid-random');
 
 const User = require("../model/User");
 
 module.exports = (io, socket) => {
     const signup = async (data) => {
+        console.log("Signup has started...");
+
         try {
-            const username = data.username;
-            const password = data.password;
+            const username = data.user;
+            const password = data.pass;
 
             let user = await User.findOne({
                 username: username
             });
             if (user) {
+                console.log("User already exists !!");
                 socket.emit(400, "User Already Exists");
             } else {
                 user = new User({
@@ -22,6 +26,7 @@ module.exports = (io, socket) => {
 
                 const salt = await bcrypt.genSalt(10);
                 user.password = await bcrypt.hash(password, salt);
+                console.log("Password has been salted...");
 
                 await user.save();
 
@@ -33,12 +38,13 @@ module.exports = (io, socket) => {
 
                 jwt.sign(
                     payload,
-                    "randomString", {
+                    uuid(), {
                         expiresIn: 10000
                     },
                     (err, token) => {
                         if (err) throw err;
                         socket.emit(200, token);
+                        console.log("Token was sent !!");
                     }
                 );
             }

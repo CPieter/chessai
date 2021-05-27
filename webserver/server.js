@@ -7,6 +7,8 @@ const userHandler = require("./routes/user");
 InitiateMongoServer();
 
 const onConnection = (socket) => {
+    console.log("A user has connected !!");
+
     // registreer alle handlers bij connectie
     AIHandler(io, socket);
     registerRoomHandler(io, socket);
