@@ -29,6 +29,8 @@ module.exports = (io, socket) => {
                     },
                     (err, token) => {
                         if (err) throw err;
+                        user.token = token;
+                        user.save();
                         socket.emit(200, token);
                         console.log("Token was sent !!");
                     }
@@ -59,8 +61,6 @@ module.exports = (io, socket) => {
                 user.password = await bcrypt.hash(password, salt);
                 console.log("Password has been salted...");
 
-                await user.save();
-
                 const payload = {
                     user: {
                         id: user.id
@@ -74,6 +74,8 @@ module.exports = (io, socket) => {
                     },
                     (err, token) => {
                         if (err) throw err;
+                        user.token = token;
+                        user.save();
                         socket.emit(200, token);
                         console.log("Token was sent !!");
                     }
