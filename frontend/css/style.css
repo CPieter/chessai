@@ -33,6 +33,7 @@
 
 #navbarItem {
     color: white;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 .resetButton {
     background-color: lightgray;
@@ -41,6 +42,7 @@
     border-radius: 5px;
     border-color: lightgray;
     box-shadow: 2px 2px grey;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 .sideButton {
     background-color: lightgray;
@@ -49,6 +51,7 @@
     border-radius: 5px;
     border-color: lightgray;
     box-shadow: 2px 2px grey;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
 
