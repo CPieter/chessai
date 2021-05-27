@@ -13,7 +13,7 @@
     <script>
         $(document).ready(function () {
             var socket = io('http://localhost:3000');
-            $("#Login_Register").click(function () {
+            $("#SignUp_Register").click(function () {
                 socket.emit("signup", {
                     user: $("#username").val(),
                     pass: $("#password").val()
@@ -40,7 +40,7 @@
         <form class="form1">
             <input class="un" id="username" type="text" align="center" placeholder="Username">
             <input class="pass" id="password"  type="password" align="center" placeholder="Password">
-            <button class="confirm" id="Login_Register" align="center">Submit</button>
+            <button class="confirm" id="SignUp_Register" align="center">Submit</button>
         </form>
     </div>
 </body>

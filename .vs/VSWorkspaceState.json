@@ -1,12 +1,14 @@
 {
   "ExpandedNodes": [
     "",
-    "\\bitboard",
-    "\\public",
-    "\\public\\bootstrap-5.0.0-beta2-dist",
-    "\\public\\css",
-    "\\public\\img"
+    "\\frontend",
+    "\\frontend\\css",
+    "\\frontend\\html",
+    "\\frontend\\js",
+    "\\webserver",
+    "\\webserver\\config",
+    "\\webserver\\routes"
   ],
-  "SelectedNode": "\\public\\chess.js",
+  "SelectedNode": "\\webserver\\routes\\user.js",
   "PreviewInSolutionExplorer": false
 }
