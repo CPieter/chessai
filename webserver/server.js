@@ -1,13 +1,15 @@
 const { io } = require('./config/server_setup');
-const registerGameVsComputerHandler = require("./game/AIHandler");
 const InitiateMongoServer = require("./config/database");
-const user = require("./routes/user"); //new addition
+const AIHandler = require("./game/AIHandler");
+const registerRoomHandler = require("./room/RoomHandler");
+const user = require("./routes/user");
 
 InitiateMongoServer();
 
 const onConnection = (socket) => {
     // registreer alle handlers bij connectie
-    registerGameVsComputerHandler(io, socket);
+    AIHandler(io, socket);
+    registerRoomHandler(io, socket);
 }
 
 io.sockets.on("connection", onConnection);
