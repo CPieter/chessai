@@ -5,9 +5,43 @@ const uuid = require('uuid-random');
 const User = require("../model/User");
 
 module.exports = (io, socket) => {
+    const login = async (data) => {
+        console.log("Signup has started...");
+        const username = data.user;
+        const password = data.pass;
+
+        let user = await User.findOne({
+            username: username
+        });
+        if (user) {
+            const salt = await bcrypt.genSalt(10);
+            console.log("Salt is ready...");
+
+            const payload = {
+                user: {
+                    id: user.id
+                }
+            };
+
+            if (user.password === await bcrypt.hash(password, salt)) {
+                console.log("Password is correct !");
+                jwt.sign(
+                    payload,
+                    uuid(), {
+                        expiresIn: 10000
+                    },
+                    (err, token) => {
+                        if (err) throw err;
+                        socket.emit(200, token);
+                        console.log("Token was sent !!");
+                    }
+                );
+            }
+        }
+    }
+
     const signup = async (data) => {
         console.log("Signup has started...");
-
         try {
             const username = data.user;
             const password = data.pass;
@@ -54,5 +88,6 @@ module.exports = (io, socket) => {
         }
     }
 
+    socket.on("login", login);
     socket.on("signup", signup);
 }
