@@ -6,7 +6,7 @@ const User = require("../model/User");
 
 module.exports = (io, socket) => {
     const login = async (data) => {
-        console.log("Signup has started...");
+        console.log("Login has started...");
         const username = data.user;
         const password = data.pass;
 
@@ -14,16 +14,13 @@ module.exports = (io, socket) => {
             username: username
         });
         if (user) {
-            const salt = await bcrypt.genSalt(10);
-            console.log("Salt is ready...");
-
             const payload = {
                 user: {
                     id: user.id
                 }
             };
 
-            if (user.password === await bcrypt.hash(password, salt)) {
+            if (bcrypt.compareSync(password, user.password)) {
                 console.log("Password is correct !");
                 jwt.sign(
                     payload,
