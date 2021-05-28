@@ -12,11 +12,11 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         $(document).ready(function () {
-            var socket = io('http://localhost:82');
-            $("#Login_Register").click(function () {
+            var socket = io('http://localhost:3000');
+            $("#SignUp_Register").click(function () {
                 socket.emit("signup", {
-                    user: $("#userName").val(),
-                    pass: $("#Password").val()
+                    user: $("#username").val(),
+                    pass: $("#password").val()
                 });
             });
         });
@@ -38,9 +38,9 @@
     <div class="main">
         <p class="log" align="center">Register</p>
         <form class="form1">
-            <input class="un" id="userName" type="text" align="center" placeholder="Username">
-            <input class="pass" id="Password"  type="password" align="center" placeholder="Password">
-            <button class="confirm" id="Login_Register" align="center">Submit</button>
+            <input class="un" id="username" type="text" align="center" placeholder="Username">
+            <input class="pass" id="password"  type="password" align="center" placeholder="Password">
+            <button class="confirm" id="SignUp_Register" align="center">Submit</button>
         </form>
     </div>
 </body>

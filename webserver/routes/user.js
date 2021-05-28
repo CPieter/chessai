@@ -1,18 +1,55 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const uuid = require('uuid-random');
 
 const User = require("../model/User");
 
 module.exports = (io, socket) => {
+    const login = async (data) => {
+        console.log("Login has started...");
+        const username = data.user;
+        const password = data.pass;
+
+        let user = await User.findOne({
+            username: username
+        });
+        if (user) {
+            const payload = {
+                user: {
+                    id: user.id
+                }
+            };
+
+            if (bcrypt.compareSync(password, user.password)) {
+                console.log("Password is correct !");
+                jwt.sign(
+                    payload,
+                    uuid(), {
+                        expiresIn: 10000
+                    },
+                    (err, token) => {
+                        if (err) throw err;
+                        user.token = token;
+                        user.save();
+                        socket.emit(200, token);
+                        console.log("Token was sent !!");
+                    }
+                );
+            }
+        }
+    }
+
     const signup = async (data) => {
+        console.log("Signup has started...");
         try {
-            const username = data.username;
-            const password = data.password;
+            const username = data.user;
+            const password = data.pass;
 
             let user = await User.findOne({
                 username: username
             });
             if (user) {
+                console.log("User already exists !!");
                 socket.emit(400, "User Already Exists");
             } else {
                 user = new User({
@@ -22,8 +59,7 @@ module.exports = (io, socket) => {
 
                 const salt = await bcrypt.genSalt(10);
                 user.password = await bcrypt.hash(password, salt);
-
-                await user.save();
+                console.log("Password has been salted...");
 
                 const payload = {
                     user: {
@@ -33,12 +69,15 @@ module.exports = (io, socket) => {
 
                 jwt.sign(
                     payload,
-                    "randomString", {
+                    uuid(), {
                         expiresIn: 10000
                     },
                     (err, token) => {
                         if (err) throw err;
+                        user.token = token;
+                        user.save();
                         socket.emit(200, token);
+                        console.log("Token was sent !!");
                     }
                 );
             }
@@ -48,5 +87,6 @@ module.exports = (io, socket) => {
         }
     }
 
+    socket.on("login", login);
     socket.on("signup", signup);
 }

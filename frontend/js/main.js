@@ -20,7 +20,7 @@ socket.on("move", (move) => {
     game.move(move);
     updateStatus();
     updateBoard();
-})
+});
 
 
 
