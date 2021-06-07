@@ -1,7 +1,7 @@
 socket = io(window.location.host);
 
 socket.on(200, async (data) => {
-    document.cookie = "token=" + data;
+    document.cookie = "token=" + data + "; path=/";
 });
 
 $(document).ready(function () {
