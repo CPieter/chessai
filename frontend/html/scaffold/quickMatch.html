@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quick match scaffold</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js" integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD" crossorigin="anonymous"></script>
+    <script src="../../js/chess.js" defer></script>
+    <script src="../../js/game.js" defer></script>
+    <script src="https://cdn.socket.io/3.1.1/socket.io.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/chessboard-1.0.0.css" />
+</head>
+<body>
+    <div id="loading">
+        <h3 style="color: white">Waiting for other players</h3>
+    </div>
+    <div style="width: 800px">
+        <div id="chessboard"></div>
+    </div>
+</body>
+<style>
+    #loading {
+        background: rgb(108,92,92);
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 10;
+        visibility: visible;
+        opacity: 1;
+        transition:visibility 1s linear,opacity 1s linear;
+    }
+</style>
+<script>
+    const socket = io(window.location.host);
+    socket.emit("matchmaking:joinQueue");
+    socket.on('game:start', (payload) => {
+        startGame('chessboard', payload);
+        $("#loading").css({'visibility': 'collapse', 'opacity' : 0});
+    });
+</script>
+</html>
