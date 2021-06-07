@@ -11,7 +11,7 @@ module.exports = (io, socket) => {
         const password = data.pass;
 
         let user = await User.findOne({
-            username: username
+            username
         });
         if (user) {
             const payload = {
@@ -20,7 +20,7 @@ module.exports = (io, socket) => {
                 }
             };
 
-            if (bcrypt.compareSync(password, user.password)) {
+            if (await bcrypt.compareSync(password, user.password)) {
                 console.log("Password is correct !");
                 jwt.sign(
                     payload,
@@ -31,11 +31,14 @@ module.exports = (io, socket) => {
                         if (err) throw err;
                         user.token = token;
                         user.save();
-                        socket.emit(200, token);
+                        socket.emit(200, user.token);
                         console.log("Token was sent !!");
                     }
                 );
             }
+        } else {
+            console.log("Resource not found !!");
+            socket.emit(404, "Resource not found")
         }
     }
 
@@ -59,7 +62,7 @@ module.exports = (io, socket) => {
 
                 const salt = await bcrypt.genSalt(10);
                 user.password = await bcrypt.hash(password, salt);
-                console.log("Password has been salted...");
+                console.log("Password has been hashed...");
 
                 const payload = {
                     user: {
@@ -76,7 +79,7 @@ module.exports = (io, socket) => {
                         if (err) throw err;
                         user.token = token;
                         user.save();
-                        socket.emit(200, token);
+                        socket.emit(200, user.token);
                         console.log("Token was sent !!");
                     }
                 );

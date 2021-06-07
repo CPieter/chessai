@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === "development") {
   let server = app.listen(port, listen);
 
   function listen() {
-    console.log(`Example app listening at: "localhost:${port}"`);
+    console.log(`ChessAI app listening at: "localhost:${port}"`);
   }
   io = require('socket.io')(server);
 }

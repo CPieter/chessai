@@ -9,34 +9,8 @@
     <script src="../js/bootstrap.min.js"></script>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        $(document).ready(function () {
-            var socket = io('http://localhost:3000');
-            $("#LogIn").click(function () {
-                socket.emit("login", {
-                    user: $("#username").val(),
-                    pass: $("#password").val()
-                });
-            });
-            socket.on(200, (data) => {
-                document.cookie = "token=" + data;
-            });
-        });
-    </script>
-    <script>
-        $('#dnn_dnnLOGIN_cmdLogin').live('click', function () {
-            var action = $(this).attr('href');
-            var cookie_value = (action == 'Login') ? 1 : null;
-
-            $.cookie('DNN-COOKIE', cookie_value);
-
-            return false;
-        });
-    </script>
-
-
-
+    <script src="https://cdn.socket.io/3.1.1/socket.io.min.js"></script>
+    <script src="/js/user.js" defer></script>
     <title>Log In</title>
 </head>
 
