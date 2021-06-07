@@ -19,7 +19,7 @@ $(document).ready(function () {
         }
     });
 
-    socket.on(200, (data) => {
+    socket.on(200, async(data) => {
         document.cookie = "token=" + data;
         ChangeLogInButton(GetCookieValue("token="));
     });
@@ -36,3 +36,4 @@ function GetCookieValue(cookieName) {
         .split('; ')
         .find(row => row.startsWith(cookieName))
         .split('=')[1];
+}
