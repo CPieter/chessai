@@ -1,5 +1,5 @@
-const GameRoom = require("./GameRooms");
-const GameSocketEvents = require("./GameSocketEvents");
+const GameRoom = require("../GameRooms");
+const GameSocketEvents = require("../GameSocketEvents");
 
 module.exports = (io, socket, roomId) => {
     const game = GameRoom.get(roomId);

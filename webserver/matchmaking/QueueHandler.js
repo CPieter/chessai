@@ -1,34 +1,21 @@
 const RoomService = require("../room/RoomService.js");
 const MatchmakingService = require("./MatchmakingService.js");
-const GameRoom = require("../game/GameRooms");
-const {Chess} = require('chess.js');
-const PlayerVsPlayerHandler = require("../game/PlayerVsPlayerHandler");
-const GameSocketEvents = require("../game/GameSocketEvents");
+const PlayerVsPlayerService = require("../game/PlayerVsPlayer/PlayerVsPlayerService");
 
 const CreateQuickMatch = (io, sockets) => {
     const roomId = RoomService.GenerateUniqueRoomString();
-    GameRoom.set(roomId, new Chess);
     const whiteSocket = io.of("/").sockets.get(sockets[0]);
     const blackSocket = io.of("/").sockets.get(sockets[1]);
-    StartQuickMatch(io, whiteSocket, roomId, whiteSocket, blackSocket, 'white');
-    StartQuickMatch(io, blackSocket, roomId, whiteSocket, blackSocket, 'black');
+
+    JoinQuickMatch(io, whiteSocket, roomId);
+    JoinQuickMatch(io, blackSocket, roomId);
+    PlayerVsPlayerService.StartGame(io, roomId, whiteSocket, blackSocket);
 };
 
-const StartQuickMatch = (io, socket, roomId, whiteSocket, blackSocket, playerColor) => {
+const JoinQuickMatch = (io, socket, roomId) => {
     MatchmakingService.LeaveQueue(io, socket, "");
     RoomService.Leave(io, socket, '');
     socket.join(roomId);
-    PlayerVsPlayerHandler(io, socket, roomId);
-    socket.emit(GameSocketEvents.Start, {
-        playerColor: playerColor,
-        turn: 'white',
-        white: {
-            user: whiteSocket.user
-        },
-        black: {
-            user: blackSocket.user
-        }
-    });
 }
 
 module.exports.init = (io) => {
