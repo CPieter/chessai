@@ -19,6 +19,12 @@ socket.on("move", (move) => {
     updateBoard();
 });
 
+socket.on("cookie", (data) => {
+    if (data) {
+        $("#navbarLogin").html("Log Off");
+    }
+});
+
 var config = {
     pieceTheme: 'img/chesspieces/{piece}.png',
     position: 'start',
@@ -129,3 +135,22 @@ sideButton.addEventListener("click", (event) => {
     updateBoard();
     updateStatus();
 });
+
+$("#navbarLogin").click(function () {
+    const navbar = $("#navbarLogin");
+    if (navbar.html() === "Log Off") {
+        deleteAllCookies();
+        navbar.html("Log In");
+    }
+});
+
+function deleteAllCookies() {
+    const cookies = document.cookie.split(";");
+
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i];
+        const eqPos = cookie.indexOf("=");
+        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    }
+}

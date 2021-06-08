@@ -91,13 +91,13 @@ module.exports = (io, socket) => {
     }
 
     const cookie = async (data) => {
-        console.log(data.token.replace('token=', ''));
+        console.log("Cookie is received...");
         try {
             const token = data.token.replace('token=', '');
             let user = await User.findOne({
                 token: token
             });
-            console.log(user.username);
+            socket.emit("cookie", user);
         } catch (err) {
             console.log(err.message);
             socket.emit(404, "Data not found");
