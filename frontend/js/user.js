@@ -1,5 +1,3 @@
-socket = io(window.location.host);
-
 socket.on(200, (data) => {
     document.cookie = "token=" + data + "; path=/";
     window.location.href = "../";

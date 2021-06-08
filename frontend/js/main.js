@@ -3,14 +3,7 @@ var game = new Chess()
 var $status = $('#status')
 var $fen = $('#fen')
 var $pgn = $('#pgn')
-socket = io(window.location.host);
 
-socket.on("connect", () => {
-    console.log("connected");
-    socket.emit("cookie", {
-        token: document.cookie
-    });
-});
 
 socket.on("move", (move) => {
     console.log("bot", move);
@@ -19,8 +12,8 @@ socket.on("move", (move) => {
     updateBoard();
 });
 
-socket.on("cookie", (data) => {
-    if (data) {
+socket.on("user:information", (data) => {
+    if (data.username !== 'anonymous') {
         $("#navbarLogin").html("Log Off");
     }
 });
@@ -143,14 +136,3 @@ $("#navbarLogin").click(function () {
         navbar.html("Log In");
     }
 });
-
-function deleteAllCookies() {
-    const cookies = document.cookie.split(";");
-
-    for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i];
-        const eqPos = cookie.indexOf("=");
-        const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
-    }
-}
