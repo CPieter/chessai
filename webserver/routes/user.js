@@ -97,7 +97,7 @@ module.exports = (io, socket) => {
             let user = await User.findOne({
                 token: token
             });
-            socket.emit("cookie", user);
+            socket.emit("cookie", user.username);
         } catch (err) {
             console.log(err.message);
             socket.emit(404, "Data not found");

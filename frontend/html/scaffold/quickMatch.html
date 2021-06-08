@@ -32,7 +32,7 @@
     }
 </style>
 <script>
-    const socket = io(window.location.host);
+    let socket = io(window.location.host);
     socket.emit("matchmaking:joinQueue");
     socket.on('game:start', (payload) => {
         startGame('chessboard', payload);
