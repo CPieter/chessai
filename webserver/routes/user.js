@@ -90,21 +90,6 @@ module.exports = (io, socket) => {
         }
     }
 
-    const cookie = async (data) => {
-        console.log("Cookie is received...");
-        try {
-            const token = data.token.replace('token=', '');
-            let user = await User.findOne({
-                token: token
-            });
-            socket.emit("cookie", user.username);
-        } catch (err) {
-            console.log(err.message);
-            socket.emit(404, "Data not found");
-        }
-    }
-
     socket.on("login", login);
     socket.on("signup", signup);
-    socket.on("cookie", cookie);
 }
