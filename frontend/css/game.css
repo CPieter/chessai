@@ -3,12 +3,6 @@
     font-family: 'Trebuchet MS', sans-serif;
 }
 
-.boardContainer {
-    width: auto;
-    height: 50em;
-    margin-top: 1em;
-    background-color: red;
-}
 
 .turnContainer {
     width: auto;
