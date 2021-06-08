@@ -16,6 +16,7 @@ const CreateQuickMatch = (io, sockets) => {
 
 const StartQuickMatch = (io, socket, roomId, whiteSocket, blackSocket, playerColor) => {
     MatchmakingService.LeaveQueue(io, socket, "");
+    RoomService.Leave(io, socket, '');
     socket.join(roomId);
     PlayerVsPlayerHandler(io, socket, roomId);
     socket.emit(GameSocketEvents.Start, {
