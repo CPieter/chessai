@@ -8,18 +8,26 @@ const GameSocketEvents = require("../game/GameSocketEvents");
 const CreateQuickMatch = (io, sockets) => {
     const roomId = RoomService.GenerateUniqueRoomString();
     GameRoom.set(roomId, new Chess);
-    StartQuickMatch(io, io.sockets.sockets.get(sockets[0]), roomId, 'white');
-    StartQuickMatch(io, io.sockets.sockets.get(sockets[1]), roomId, 'black');
-
-    //TODO: Send player information to each other
-    // io.of("/").to(roomId).emit("custom", [...io.sockets.adapter.rooms.get(roomId)]);
+    const whiteSocket = io.of("/").sockets.get(sockets[0]);
+    const blackSocket = io.of("/").sockets.get(sockets[1]);
+    StartQuickMatch(io, whiteSocket, roomId, whiteSocket, blackSocket, 'white');
+    StartQuickMatch(io, blackSocket, roomId, whiteSocket, blackSocket, 'black');
 };
 
-const StartQuickMatch = (io, socket, roomId, color) => {
+const StartQuickMatch = (io, socket, roomId, whiteSocket, blackSocket, playerColor) => {
     MatchmakingService.LeaveQueue(io, socket, "");
     socket.join(roomId);
     PlayerVsPlayerHandler(io, socket, roomId);
-    socket.emit(GameSocketEvents.Start, color)
+    socket.emit(GameSocketEvents.Start, {
+        playerColor: playerColor,
+        turn: 'white',
+        white: {
+            user: whiteSocket.user
+        },
+        black: {
+            user: blackSocket.user
+        }
+    });
 }
 
 module.exports.init = (io) => {
