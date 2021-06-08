@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+
+    <script src="../js/library/jquery/jquery-3.5.1.min.js"></script>
+    <script src="../js/library/chessboardjs/chessboard-1.0.0.min.js"></script>
+    <script src="../js/library/socket-io/socket.io-min.js"></script>
+
+    <script src="../js/cookie-helper.js"></script>
+    <script src="../js/socket-io.js"></script>
+    <script src="../js/chess.js" defer></script>
+    <script src="../js/game.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="../css/chessboard-1.0.0.css" />
+
+    <link rel="stylesheet" type="text/css" href="../css/game.css" />
+    <script src="../js/library/bootstrap/bootstrap.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Game</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="../index.html">Chess AI</a>
+                <a class="navbar-nav" href="../html/game.html">Game</a>
+                <a class="navbar-nav" id="navbarLogin" href="../html/logIn.html">Log In</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <div class="player1Container">
+                    <p id="enemy"></p>
+                </div>
+                <div class="turnContainer">
+                    <p id="turn"></p>
+                </div>
+                <div class="player2Container">
+                    <p id="you"></p>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="boardContainer">
+                    <div id="chessboard"></div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="evaluationContainer">
+                    <p>Evaluation AI</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    socket.on('game:start', (payload) => {
+        startGame('chessboard', payload.playerColor);
+        $("#you").text(payload.playerColor === 'white' ? payload.white.user.username : payload.black.user.username);
+        $("#enemy").text(payload.playerColor === 'black' ? payload.white.user.username : payload.black.user.username);
+        $("#turn").text(payload.turn);
+    });
+
+    const roomId = new URLSearchParams(window.location.search).get('room');
+    if (roomId === null) {
+        socket.on("room:create:success", (payload) => {
+            alert(window.location.href + '?room=' + payload);
+        });
+        socket.emit("room:create");
+    } else {
+        socket.emit("room:join", roomId);
+    }
+</script>
+</html>
