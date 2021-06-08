@@ -1,3 +1,61 @@
-﻿body
-{
+﻿#navbarLogin {
+    color: white;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.boardContainer {
+    width: auto;
+    height: 50em;
+    margin-top: 1em;
+    background-color: red;
+}
+
+.turnContainer {
+    width: auto;
+    margin: auto;
+    background-color: gray;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: gray;
+    box-shadow: 2px 2px black;
+}
+
+.player1Container {
+    width: auto;
+    margin: auto;
+    background-color: darkgrey;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: darkgrey;
+    box-shadow: 2px 2px black;
+    margin-top: 1em;
+    margin-bottom: 44.2em;
+}
+
+.player2Container {
+    width: auto;
+    margin: auto;
+    background-color: darkgrey;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: darkgrey;
+    box-shadow: 2px 2px black;
+    margin-top: 1em;
+    margin-bottom: 44.2em;
+}
+
+.evaluationContainer {
+    width: auto;
+    margin: auto;
+    background-color: lightgray;
+    height: 30em;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: lightgray;
+    box-shadow: 2px 2px black;
+    margin-top: 1em;
 }
