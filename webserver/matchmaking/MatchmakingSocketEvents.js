@@ -1,3 +1,4 @@
 module.exports = {
-    JoinQueue: "matchmaking:joinQueue"
+    JoinQueue: "matchmaking:joinQueue",
+    JoinAi: "matchmaking:ai"
 }

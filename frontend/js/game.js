@@ -48,6 +48,13 @@ function onDrop(source, target) {
     }
 }
 
+socket.on('game:undo', (payload) => {
+    for (i = 0; i < payload; i++) {
+        game.undo();
+    }
+    board.position(game.fen());
+});
+
 socket.on('game:move', (payload) => {
     game.move(payload);
     board.position(game.fen());

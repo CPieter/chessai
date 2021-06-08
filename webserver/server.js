@@ -1,6 +1,6 @@
 const { io } = require('./config/server_setup');
 const InitiateMongoServer = require("./config/database");
-const AIHandler = require("./game/AIHandler");
+const AIHandler = require("./game/AiHandler/AiHandler");
 const registerRoomHandler = require("./room/RoomHandler");
 const userHandler = require("./routes/user");
 const QueueHandler = require("./matchmaking/QueueHandler.js");
