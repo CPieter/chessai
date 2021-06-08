@@ -19,6 +19,7 @@
     border-radius: 5px;
     border-color: gray;
     box-shadow: 2px 2px black;
+    margin-bottom: 20.7em;
 }
 
 .player1Container {
@@ -31,7 +32,7 @@
     border-color: darkgrey;
     box-shadow: 2px 2px black;
     margin-top: 1em;
-    margin-bottom: 44.2em;
+    margin-bottom: 20.7em;
 }
 
 .player2Container {
@@ -43,8 +44,6 @@
     border-radius: 5px;
     border-color: darkgrey;
     box-shadow: 2px 2px black;
-    margin-top: 1em;
-    margin-bottom: 44.2em;
 }
 
 .evaluationContainer {

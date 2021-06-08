@@ -1,4 +1,4 @@
-#myBoard {
+/*#myBoard {
     margin: 0;
     margin-top: 2em;
     width: 100%;
@@ -30,12 +30,12 @@
     border-color: lightgray;
     box-shadow: 5px 5px grey;
 }
-
+*/
 #navbarLogin {
     color: white;
     font-family: 'Trebuchet MS', sans-serif;
 }
-.resetButton {
+/*.resetButton {
     background-color: lightgray;
     border-style: solid;
     border-width: 2px;
@@ -53,8 +53,39 @@
     box-shadow: 2px 2px grey;
     font-family: 'Trebuchet MS', sans-serif;
 }
+    */
+.playerButton {
+    background-color: lightgray;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: lightgray;
+    box-shadow: 2px 2px grey;
+    font-family: 'Trebuchet MS', sans-serif;
+    width: 15em;
+    font-size: 30px;
+    margin-top: 3em;
+    margin-bottom: 2em;
+}
 
-
+.AIButton {
+    background-color: lightgray;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: lightgray;
+    box-shadow: 2px 2px grey;
+    font-family: 'Trebuchet MS', sans-serif;
+    width: 15em;
+    font-size: 30px;
+}
+.photoContainer {
+    background-color: rosybrown;
+    border-style: solid;
+    border-width: 10px;
+    border-radius: 5px;
+    border-color: rosybrown;
+}
 
 
 
