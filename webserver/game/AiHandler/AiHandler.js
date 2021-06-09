@@ -1,8 +1,11 @@
 const GameSocketEvents = require("../GameSocketEvents");
 const AiSocketEvents = require("./AiSocketEvents");
+const Bitboard = require("../../../bitboard/bitboard");
+const DeepChess = require("../../../deepchess/deepchess");
 const { Chess } = require('chess.js');
 
 module.exports = (io, socket) => {
+
     let initialized = false;
     let game;
     let playerColor;
@@ -35,6 +38,7 @@ module.exports = (io, socket) => {
         game.undo();
         socket.emit(GameSocketEvents.Undo, 2);
 
+
         if (playerColor !== 'white' && game.turn() === 'w') {
             const randomMove = GetMove();
             game.move(randomMove);
@@ -44,8 +48,23 @@ module.exports = (io, socket) => {
 
     const GetMove = () => {
         const moves = game.moves();
-        return moves[Math.floor(Math.random() * moves.length)];
+        const bestMoveIndex = DeepChess.GetBestMoveIndex(GetBitboardArray(moves));
+        return moves[bestMoveIndex];
     }
+
+    const GetBitboardArray = (moves) => {
+        const fakeGame = new Chess(game.fen());
+        let bitboardArray = [];
+
+        for (let i = 0; i < moves.length; i++) {
+            const move = moves[i];
+            fakeGame.move(move);
+            bitboardArray.push(Bitboard.fen_to_bitboard(fakeGame.fen()));
+            fakeGame.undo();
+        }
+
+        return bitboardArray;
+    };
 
     const InitializeListeners = () => {
         socket.on(GameSocketEvents.Move, Move);
