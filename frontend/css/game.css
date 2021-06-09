@@ -3,22 +3,6 @@
     font-family: 'Trebuchet MS', sans-serif;
 }
 
-
-.turnContainer {
-    width: auto;
-    height: 3em;
-    background-color: blanchedalmond;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 5px;
-    border-color: blanchedalmond;
-    box-shadow: 2px 2px black;
-    margin-bottom: 20.7em;
-    padding-top: 5px;
-    text-align: center;
-        text-align:center;
-}
-
 .player1Container {
     width: auto;
     height: 3em;
@@ -29,7 +13,7 @@
     border-color: floralwhite;
     box-shadow: 2px 2px black;
     margin-top: 1em;
-    margin-bottom: 20.7em;
+    margin-bottom: 45.4em;
     padding-top: 5px;
     text-align:center;
 }
@@ -50,7 +34,7 @@
 .evaluationContainer {
     width: auto;
     background-color: blanchedalmond;
-    height: 30em;
+    height: auto;
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;

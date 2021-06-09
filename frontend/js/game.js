@@ -45,7 +45,38 @@ function onDrop(source, target) {
         return 'snapback'
     } else {
         socket.emit('game:move', move);
+        updateStatus();
     }
+}
+
+function updateStatus() {
+    var status = '';
+
+    var moveColor = 'White';
+    if (game.turn() === 'b') {
+        moveColor = 'Black';
+    }
+
+    // checkmate?
+    if (game.in_checkmate()) {
+        status = 'Game over, ' + moveColor + ' is in checkmate.';
+    }
+
+    // draw?
+    else if (game.in_draw()) {
+        status = 'Game over, drawn position';
+    }
+
+    // game still on
+    else {
+        status = moveColor + ' to move';
+
+        // check?
+        if (game.in_check()) {
+            status += ', ' + moveColor + ' is in check';
+        }
+    }
+    $("#status").text(status);
 }
 
 socket.on('game:undo', (payload) => {
@@ -58,4 +89,5 @@ socket.on('game:undo', (payload) => {
 socket.on('game:move', (payload) => {
     game.move(payload);
     board.position(game.fen());
+    updateStatus();
 });

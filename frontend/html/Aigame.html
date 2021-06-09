@@ -12,6 +12,8 @@
     <script src="../js/socket-io.js"></script>
     <script src="../js/chess.js" defer></script>
     <script src="../js/game.js" defer></script>
+    <script src="../js/main.js" defer></script>
+
     <link rel="stylesheet" type="text/css" href="../css/chessboard-1.0.0.css" />
 
     <link rel="stylesheet" type="text/css" href="../css/game.css" />
@@ -44,7 +46,10 @@
             </div>
             <div class="col-2">
                 <div class="evaluationContainer">
-                    <p>Evaluation AI</p>
+                    <p>
+                        <label>Status:</label>
+                        <div id="status"></div>
+                    </p>
                 </div>
             </div>
         </div>
@@ -59,5 +64,7 @@
     function undo() {
         socket.emit("ai:undo");
     }
+
+
 </script>
 </html>
