@@ -1,24 +1,22 @@
-const tf = require('@tensorflow/tfjs');
+const tf = require('@tensorflow/tfjs-node');
 
 class DeepChess {
     #model;
 
     constructor() {
-        tf.loadLayersModel("model.json").then(function(model) {
-            this.#model = model;
-        });
+        this.#model = tf.loadLayersModel("file://deepchess/model.json");
     }
 
     GetBestMoveIndex(bitboards) {
-        inputs = []
+        let inputs = []
         bitboards.forEach(bitboard => {
             inputs.push(tf.tensor(bitboard).reshape([-1]));
         });
 
-        best_bitboard = inputs[0];
+        let best_bitboard = inputs[0];
 
         inputs.forEach(input => {
-            prediction = this.#model.predict([best_bitboard, input]);
+            const prediction = this.#model.predict([best_bitboard, input]);
 
             if (prediction[0] < prediction[1]) {
                 best_bitboard = input;
