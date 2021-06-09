@@ -4,11 +4,16 @@ class DeepChess {
     #model;
 
     constructor() {
-        this.#model = tf.loadLayersModel("file://deepchess/model.json");
+        this.#loadModel();
+    }
+
+    #loadModel = async () => {
+        this.#model = await tf.loadLayersModel("file://deepchess/model.json");
     }
 
     GetBestMoveIndex(bitboards) {
         let inputs = []
+        console.log(this.#model)
         bitboards.forEach(bitboard => {
             inputs.push(tf.tensor(bitboard).reshape([-1]));
         });
