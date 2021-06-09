@@ -1,54 +1,109 @@
 ﻿#navbarLogin {
-    color: white;
+    color: black;
     font-family: 'Trebuchet MS', sans-serif;
 }
 
 
 .turnContainer {
     width: auto;
-    margin: auto;
-    background-color: gray;
+    height: 3em;
+    background-color: blanchedalmond;
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
-    border-color: gray;
+    border-color: blanchedalmond;
     box-shadow: 2px 2px black;
     margin-bottom: 20.7em;
+    padding-top: 5px;
+    text-align: center;
+        text-align:center;
 }
 
 .player1Container {
     width: auto;
-    margin: auto;
-    background-color: darkgrey;
+    height: 3em;
+    background-color: floralwhite;
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
-    border-color: darkgrey;
+    border-color: floralwhite;
     box-shadow: 2px 2px black;
     margin-top: 1em;
     margin-bottom: 20.7em;
+    padding-top: 5px;
+    text-align:center;
 }
 
 .player2Container {
     width: auto;
-    margin: auto;
-    background-color: darkgrey;
+    height: 3em;
+    background-color: floralwhite;
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
-    border-color: darkgrey;
+    border-color: floralwhite;
     box-shadow: 2px 2px black;
+    padding-top: 5px;
+    text-align: center;
 }
 
 .evaluationContainer {
     width: auto;
-    margin: auto;
-    background-color: lightgray;
+    background-color: blanchedalmond;
     height: 30em;
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
-    border-color: lightgray;
+    border-color: blanchedalmond;
     box-shadow: 2px 2px black;
     margin-top: 1em;
+    text-align: center;
 }
+
+.blackButton {
+    background-color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: black;
+    box-shadow: 2px 2px grey;
+    font-family: 'Trebuchet MS', sans-serif;
+    width: 10em;
+    font-size: 20px;
+    color: white;
+    margin-top: 1em;
+}
+
+.whiteButton {
+    background-color: floralwhite;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: floralwhite;
+    box-shadow: 2px 2px grey;
+    font-family: 'Trebuchet MS', sans-serif;
+    width: 10em;
+    font-size: 20px;
+    color: black;
+    margin-top: 1em;
+}
+
+.undoButton {
+    background-color: blanchedalmond;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: blanchedalmond;
+    box-shadow: 2px 2px grey;
+    font-family: 'Trebuchet MS', sans-serif;
+    width: 10em;
+    font-size: 20px;
+    margin-top: 1em;
+}
+
+p {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    color: black;
+}
+

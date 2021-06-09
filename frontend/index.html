@@ -9,7 +9,7 @@
 	<script src="./js/cookie-helper.js"></script>
 	<script src="./js/socket-io.js"></script>
 
-	<script src="js/chess.js" defer></script>
+
 	<script src="js/main.js" defer></script>
 
 	<link rel="stylesheet" type="text/css" href="css/chessboard-1.0.0.css" />
@@ -23,10 +23,9 @@
 
 <body>
 	<header>
-		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+		<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3" style="background-color:blanchedalmond">
 			<div class="container">
-				<a class="navbar-brand" href="index.html"> Chess AI</a>
-				<a class="navbar-nav" href="html/game.html">Game</a>
+				<a class="navbar-brand" href="index.html" style="color:black; font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"> Chess AI</a>
 				<a class="navbar-nav" id="navbarLogin" href="html/logIn.html">Log In</a>
 			</div>
 		</nav>
@@ -47,10 +46,10 @@
 									<h5>Click on one of the buttons to start!</h5>
 								</div>
 								<div class="col-12">
-									<button class="playerButton">Play Against Another Player</button>
+									<a href="html/InviteGame.html"><button class="playerButton">Play Against Another Player</button></a>
 								</div>
 								<div class="col-12">
-									<button class="AIButton">Play Against The AI</button>
+									<a href="html/Aigame.html"><button class="AIButton">Play Against The AI</button></a>
 								</div>
 							</div>
 						</div>
@@ -102,5 +101,10 @@
 				</div>
 			</div>
 		-->
+	<footer class="border-top footer text-muted">
+		<div class="container">
+			<h6>&copy; Chess AI 2021</h6>
+		</div>
+	</footer>
 </body>
 </html>

@@ -1,91 +1,68 @@
-/*#myBoard {
-    margin: 0;
-    margin-top: 2em;
-    width: 100%;
+body{
+    background-color: floralwhite;
 }
 
-.boardContainer {
-    width: 70vmin;
-    overflow-wrap: break-word;
-    margin: auto;
-}
-
-#brownBox {
-    background-color: blanchedalmond;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    height: 15vw;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 5px;
-    border-color: blanchedalmond;
-    box-shadow: 5px 5px grey;
-}
-
-#grayBox {
-    background-color: lightgray;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 5px;
-    border-color: lightgray;
-    box-shadow: 5px 5px grey;
-}
-*/
 #navbarLogin {
-    color: white;
+    color: black;
     font-family: 'Trebuchet MS', sans-serif;
 }
-/*.resetButton {
-    background-color: lightgray;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 5px;
-    border-color: lightgray;
-    box-shadow: 2px 2px grey;
-    font-family: 'Trebuchet MS', sans-serif;
-}
-.sideButton {
-    background-color: lightgray;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 5px;
-    border-color: lightgray;
-    box-shadow: 2px 2px grey;
-    font-family: 'Trebuchet MS', sans-serif;
-}
-    */
+
 .playerButton {
-    background-color: lightgray;
+    background-color: white;
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
-    border-color: lightgray;
+    border-color: white;
     box-shadow: 2px 2px grey;
     font-family: 'Trebuchet MS', sans-serif;
     width: 15em;
+    color: black;
     font-size: 30px;
     margin-top: 3em;
     margin-bottom: 2em;
 }
 
 .AIButton {
-    background-color: lightgray;
+    background-color: black;
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
-    border-color: lightgray;
+    border-color: black;
     box-shadow: 2px 2px grey;
     font-family: 'Trebuchet MS', sans-serif;
     width: 15em;
+    color: white;
     font-size: 30px;
 }
 .photoContainer {
-    background-color: rosybrown;
+    background-color: floralwhite;
     border-style: solid;
     border-width: 10px;
     border-radius: 5px;
-    border-color: rosybrown;
+    border-color: floralwhite;
+    box-shadow: 5px 5px lightgrey;
+    height: 50em;
+    margin-bottom: 2em;
+}
+footer {
+    position: fixed;
+    width: 100%;
+    background-color: blanchedalmond;
 }
 
+h1 {
+    color: black;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+h5 {
+    color: black;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+h6 {
+    padding-top: 5px;
+    color: black;
+    font-family: 'Trebuchet MS', sans-serif;
+}
 
 

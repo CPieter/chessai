@@ -14,7 +14,7 @@ body {
 
 .log {
     padding-top: 40px;
-    color: lightgray;
+    color: black;
     font-family: 'Trebuchet MS', sans-serif;
     font-weight: bold;
     font-size: 23px;
@@ -93,7 +93,7 @@ form.form1 {
 }
 
 #register {
-    color: lightgray;
+    color: gray;
     text-decoration: none;
 }
 
@@ -110,6 +110,20 @@ a {
 }
 
 #navbarLogin {
-    color: white;
+    color: black;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    background-color: blanchedalmond;
+    left: 0;
+    bottom: 0;
+}
+
+h6 {
+    padding-top: 5px;
+    color: black;
     font-family: 'Trebuchet MS', sans-serif;
 }
