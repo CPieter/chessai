@@ -3,7 +3,7 @@ body{
 }
 
 #navbarLogin {
-    color: white;
+    color: black;
     font-family: 'Trebuchet MS', sans-serif;
 }
 
@@ -35,18 +35,34 @@ body{
     font-size: 30px;
 }
 .photoContainer {
-    background-color: blanchedalmond;
+    background-color: floralwhite;
     border-style: solid;
     border-width: 10px;
     border-radius: 5px;
-    border-color: blanchedalmond;
-    box-shadow: 5px 5px grey;
+    border-color: floralwhite;
+    box-shadow: 5px 5px lightgrey;
     height: 50em;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
-footer{
-    height:3em;
+footer {
+    position: fixed;
+    width: 100%;
+    background-color: blanchedalmond;
 }
 
+h1 {
+    color: black;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+h5 {
+    color: black;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+h6 {
+    padding-top: 5px;
+    color: black;
+    font-family: 'Trebuchet MS', sans-serif;
+}
 
 
