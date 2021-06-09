@@ -7,21 +7,20 @@ class DeepChess {
         this.#loadModel();
     }
 
-    #loadModel = async () => {
+    #loadModel = async() => {
         this.#model = await tf.loadLayersModel("file://deepchess/model.json");
     }
 
     GetBestMoveIndex(bitboards) {
         let inputs = []
-        console.log(this.#model)
         bitboards.forEach(bitboard => {
-            inputs.push(tf.tensor(bitboard).reshape([-1]));
+            inputs.push(tf.tensor(bitboard).reshape([1, -1]));
         });
 
         let best_bitboard = inputs[0];
 
         inputs.forEach(input => {
-            const prediction = this.#model.predict([best_bitboard, input]);
+            const prediction = this.#model.predict([best_bitboard, input]).dataSync();
 
             if (prediction[0] < prediction[1]) {
                 best_bitboard = input;
