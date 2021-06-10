@@ -1,4 +1,7 @@
 const game = new Chess();
+const whiteSquareGrey = '#a9a9a9'
+const blackSquareGrey = '#696969'
+let boardEl;
 let board;
 let playerColor;
 
@@ -9,10 +12,13 @@ const config = {
     draggable: true,
     onDragStart: onDragStart,
     onDrop: onDrop,
+    onMouseoutSquare: onMouseoutSquare,
+    onMouseoverSquare: onMouseoverSquare,
 }
 
 function startGame(boardElement, color) {
     game.reset();
+    boardEl = boardElement;
     board = Chessboard(boardElement, config);
     board.orientation(color);
     playerColor = color;
@@ -33,6 +39,8 @@ function onDragStart(source, piece) {
 }
 
 function onDrop(source, target) {
+    removeGreySquares();
+
     // see if the move is legal
     const move = game.move({
         from: source,
@@ -49,10 +57,33 @@ function onDrop(source, target) {
     }
 }
 
-function updateStatus() {
-    var status = '';
+function onMouseoutSquare (square, piece) {
+    removeGreySquares()
+}
 
-    var moveColor = 'White';
+function onMouseoverSquare (square, piece) {
+    // get list of possible moves for this square
+    const moves = game.moves({
+        square: square,
+        verbose: true
+    })
+
+    // exit if there are no moves available for this square
+    if (moves.length === 0) return
+
+    // highlight the square they moused over
+    greySquare(square)
+
+    // highlight the possible squares for this piece
+    for (let i = 0; i < moves.length; i++) {
+        greySquare(moves[i].to)
+    }
+}
+
+function updateStatus() {
+    let status = '';
+
+    let moveColor = 'White';
     if (game.turn() === 'b') {
         moveColor = 'Black';
     }
@@ -77,6 +108,25 @@ function updateStatus() {
         }
     }
     $("#status").text(status);
+}
+
+function removeGreySquares () {
+    $('#' + boardEl + ' .square-55d63').css('background', '')
+}
+
+function greySquare (square) {
+    // only when play is correct color
+    if ((game.turn() === 'w' && playerColor !== 'white') || (game.turn() === 'b' && playerColor !== 'black'))
+        return false;
+
+    let $square = $('#' + boardEl + ' .square-' + square)
+
+    let background = whiteSquareGrey
+    if ($square.hasClass('black-3c85d')) {
+        background = blackSquareGrey
+    }
+
+    $square.css('background', background)
 }
 
 socket.on('game:undo', (payload) => {

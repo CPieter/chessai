@@ -5,7 +5,7 @@
 
 ## Install instructions
 
-requirements: node, npm
+requirements: node version 12.7 or lower, npm
 
 ```
 npm install
