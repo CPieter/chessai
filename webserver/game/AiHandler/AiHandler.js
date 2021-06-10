@@ -46,9 +46,9 @@ module.exports = (io, socket) => {
         }
     };
 
-    const GetMove = (payload) => {
+    const GetMove = () => {
         const moves = game.moves();
-        const bestMoveIndex = DeepChess.GetBestMoveIndex(GetBitboardArray(moves), payload);
+        const bestMoveIndex = DeepChess.GetBestMoveIndex(GetBitboardArray(moves), playerColor);
         return moves[bestMoveIndex];
     }
 
