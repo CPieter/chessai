@@ -1,14 +1,13 @@
 const tf = require('@tensorflow/tfjs-node');
 
-class DeepChess {#
-    model;
+class DeepChess {
+    #model;
 
     constructor() {
         this.#loadModel();
     }
 
-    #
-    loadModel = async() => {
+    #loadModel = async() => {
         this.#model = await tf.loadLayersModel("file://deepchess/model.json");
     }
 
